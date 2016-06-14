@@ -9,16 +9,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 public class MyNotepad extends ListActivity {
     private static final int ACTIVITY_CREATE=0;
     private static final int ACTIVITY_EDIT=1;
 
-    private static final int INSERT_ID = Menu.FIRST;
-    private static final int DELETE_ID = Menu.FIRST + 1;
+    //private static final int INSERT_ID = Menu.FIRST;
+    private static final int DELETE_ID = Menu.FIRST;
 
     private NotesDbAdapter mDbHelper;
 
@@ -27,10 +30,19 @@ public class MyNotepad extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_list);
+
         mDbHelper = new NotesDbAdapter(this);
         mDbHelper.open();
         fillData();
         registerForContextMenu(getListView());
+
+        Button addnote = (Button)findViewById(R.id.addnotebutton);
+        addnote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNote();
+            }
+        });
     }
 
     private void fillData() {
@@ -52,20 +64,30 @@ public class MyNotepad extends ListActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        menu.add(0, INSERT_ID,0, R.string.menu_insert);
+        getMenuInflater().inflate(R.menu.notelist_menu, menu);
         return true;
+        //super.onCreateOptionsMenu(menu);
+        //menu.add(0, INSERT_ID,0, R.string.menu_insert);
+        //return true;
     }
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch(item.getItemId()) {
-            case INSERT_ID:
+        //switch(item.getItemId()) {
+        //    case INSERT_ID:
+        //        createNote();
+        //        return true;
+        //}
+
+        //return super.onMenuItemSelected(featureId, item);
+        switch (item.getItemId()) {
+            case R.id.addnotebutton:
                 createNote();
                 return true;
-        }
 
-        return super.onMenuItemSelected(featureId, item);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
