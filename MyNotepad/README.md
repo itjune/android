@@ -2,8 +2,12 @@
 
 ##Features:
 * add new note (yes that nice plus button)
-* delete selected note (select a note or delete from edit screen)
+* delete selected note (on long press or edit screen)
 * delete all notes (from main menu)
+
+Samples:
+
+![image](https://github.com/itjune/android/blob/master/MyNotepad/screenshots/1.jpg)
 
 Say NO to empty title! Enter a title or it will be the first 10 symbols of note body. 
 
