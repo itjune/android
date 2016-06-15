@@ -31,6 +31,7 @@ public class NoteEdit extends Activity {
         mBodyText = (EditText) findViewById(R.id.body);
 
         Button confirmButton = (Button) findViewById(R.id.confirm);
+        Button deleteButton = (Button) findViewById(R.id.delete);
 
         mRowId = savedInstanceState != null ? savedInstanceState.getLong(NotesDbAdapter.KEY_ROWID)
                 : null;
@@ -43,6 +44,7 @@ public class NoteEdit extends Activity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
+                saveState();
                 setResult(RESULT_OK);
                 finish();
             }
@@ -77,20 +79,54 @@ public class NoteEdit extends Activity {
         populateFields();
     }
 
-    private void saveState() {
+    /*private void saveState() {
         String title = mTitleText.getText().toString();
         String body = mBodyText.getText().toString();
 
         if (mRowId == null) {
-            long id = mDbHelper.createNote(title, body);
-            if (id > 0) {
-                mRowId = id;
+            if (!(title.equals("")) || !(body.equals(""))){
+                int endInd = body.length() > 10 ? 10
+                        : body.length();
+
+                String title_new = title.equals("") ? body.substring(0, endInd)
+                        : title;
+                long id = mDbHelper.createNote(title_new, body);
+                if (id > 0) {
+                    mRowId = id;
+                }
             }
         } else {
-            mDbHelper.updateNote(mRowId, title, body);
+                mDbHelper.updateNote(mRowId, title, body);
         }
-    }
 
+    }*/
+
+    private void saveState() {
+        String title = mTitleText.getText().toString();
+        String body = mBodyText.getText().toString();
+
+        if (!(title.equals("")) || !(body.equals(""))) {
+            int endInd = body.length() > 10 ? 10
+                        : body.length();
+
+            String title_new = title.equals("") ? body.substring(0, endInd)
+                        : title;
+            if (mRowId == null){
+                long id = mDbHelper.createNote(title_new, body);
+                if (id > 0) {
+                    mRowId = id;
+                }
+            } else {
+                mDbHelper.updateNote(mRowId, title_new, body);
+                }
+        }
+        else {
+            if (mRowId != null) {
+                mDbHelper.deleteNote(mRowId);
+            }
+        }
+
+    }
 
 }
 

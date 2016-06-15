@@ -62,16 +62,16 @@ public class MyNotepad extends ListActivity {
         setListAdapter(notes);
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.notelist_menu, menu);
         return true;
         //super.onCreateOptionsMenu(menu);
         //menu.add(0, INSERT_ID,0, R.string.menu_insert);
         //return true;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         //switch(item.getItemId()) {
         //    case INSERT_ID:
@@ -88,7 +88,7 @@ public class MyNotepad extends ListActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
