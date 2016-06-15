@@ -49,6 +49,17 @@ public class NoteEdit extends Activity {
                 finish();
             }
         });
+
+       deleteButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                if (mRowId != null) {
+                    mDbHelper.deleteNote(mRowId);
+                }
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
     }
     private void populateFields() {
         if (mRowId != null) {
@@ -78,28 +89,6 @@ public class NoteEdit extends Activity {
         super.onResume();
         populateFields();
     }
-
-    /*private void saveState() {
-        String title = mTitleText.getText().toString();
-        String body = mBodyText.getText().toString();
-
-        if (mRowId == null) {
-            if (!(title.equals("")) || !(body.equals(""))){
-                int endInd = body.length() > 10 ? 10
-                        : body.length();
-
-                String title_new = title.equals("") ? body.substring(0, endInd)
-                        : title;
-                long id = mDbHelper.createNote(title_new, body);
-                if (id > 0) {
-                    mRowId = id;
-                }
-            }
-        } else {
-                mDbHelper.updateNote(mRowId, title, body);
-        }
-
-    }*/
 
     private void saveState() {
         String title = mTitleText.getText().toString();

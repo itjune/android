@@ -6,5 +6,6 @@
     <string name="title">Title</string>
     <string name="body">Body</string>
     <string name="confirm">Save</string>
+    <string name="delete">Delete</string>
     <string name="edit_note">Edit Note</string>
 </resources>
