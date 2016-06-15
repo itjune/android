@@ -20,8 +20,8 @@ public class MyNotepad extends ListActivity {
     private static final int ACTIVITY_CREATE=0;
     private static final int ACTIVITY_EDIT=1;
 
-    //private static final int INSERT_ID = Menu.FIRST;
-    private static final int DELETE_ID = Menu.FIRST;
+    private static final int DELETEALL_ID = Menu.FIRST;
+    private static final int DELETE_ID = Menu.FIRST + 1;
 
     private NotesDbAdapter mDbHelper;
 
@@ -62,33 +62,31 @@ public class MyNotepad extends ListActivity {
         setListAdapter(notes);
     }
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.notelist_menu, menu);
+        super.onCreateOptionsMenu(menu);
+        menu.add(0, DELETEALL_ID,0, R.string.delete_all);
         return true;
-        //super.onCreateOptionsMenu(menu);
-        //menu.add(0, INSERT_ID,0, R.string.menu_insert);
-        //return true;
-    }*/
+    }
 
-    /*@Override
+    @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        //switch(item.getItemId()) {
-        //    case INSERT_ID:
-        //        createNote();
-        //        return true;
-        //}
-
-        //return super.onMenuItemSelected(featureId, item);
-        switch (item.getItemId()) {
-            case R.id.addnotebutton:
-                createNote();
+        switch(item.getItemId()) {
+            case DELETEALL_ID:
+                mDbHelper.deleteAll();
+                fillData();
                 return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
         }
-    }*/
+
+        return super.onMenuItemSelected(featureId, item);
+        //switch (item.getItemId()) {
+            //case R.id.addnotebutton:
+                //createNote();
+                //return true;
+
+            //default:
+                //return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,

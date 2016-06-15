@@ -120,6 +120,11 @@ public class NotesDbAdapter {
         return mDb.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
+    public boolean deleteAll() {
+
+        return mDb.delete(DATABASE_TABLE, null, null) > 0;
+    }
+
     /**
      * Return a Cursor over the list of all notes in the database
      *
