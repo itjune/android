@@ -8,13 +8,10 @@ import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 public class MyNotepad extends ListActivity {
     private static final int ACTIVITY_CREATE=0;
@@ -79,13 +76,6 @@ public class MyNotepad extends ListActivity {
         }
 
         return super.onMenuItemSelected(featureId, item);
-        //switch (item.getItemId()) {
-            //case R.id.addnotebutton:
-                //createNote();
-                //return true;
-
-            //default:
-                //return super.onOptionsItemSelected(item);
     }
 
     @Override

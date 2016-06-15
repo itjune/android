@@ -9,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btmLayout"
-        android:layout_gravity="top"/>
+        android:divider="#D3D3D3"
+        android:dividerHeight="1sp"/>
 
     <TextView android:id="@android:id/empty"
         android:layout_width="wrap_content"
